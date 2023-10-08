@@ -1,0 +1,99 @@
+﻿@model ProjetoBancoMVC.Models.FuncionarioModel
+@{
+    ViewBag.Title = "AdicionarFuncionario";
+}
+
+<h2>Novo Funcionario</h2>
+<hr />
+@using (Html.BeginForm("AdicionarFuncionario", "Funcionario",
+            FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome,
+                        new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Nome,
+                                new
+                                     {
+                                         @class = "form-control",
+                                @placeholder = "Nome do Funcionário"
+                                     })
+            @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sobrenome,
+                        new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Sobrenome,
+                                new
+                                     {
+                                         @class = "form-control",
+                                @placeholder = "Sobrenome do Funcionário"
+                                     })
+            @Html.ValidationMessageFor(m => m.Sobrenome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cidade,
+                        new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Cidade,
+                                new
+                                     {
+                                         @class = "form-control",
+                                @placeholder = "Cidade"
+                                     })
+            @Html.ValidationMessageFor(m => m.Cidade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Endereco,
+                        new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Endereco,
+                                new
+                                {
+                                    @class = "form-control",
+                                    @placeholder = "Endereço"
+                                })
+            @Html.ValidationMessageFor(m => m.Endereco, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email,
+                        new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Email,
+                                new
+                                {
+                                    @class = "form-control",
+                                    @placeholder = "E-mail"
+                                })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImagemUpload,
+                        new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ImagemUpload,
+                                new
+                                {
+                                    type = "file", 
+                                    @class = "form-control"
+                                })
+            @Html.ValidationMessageFor(m => m.ImagemUpload, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Adicionar" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "SelecionarFuncionarios", null, new { @class = "btn btn-danger" })
+        </div> 
+    </div>
+</div>
+}
+

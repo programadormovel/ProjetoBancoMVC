@@ -26,7 +26,7 @@ namespace ProjetoBancoMVC.Models
 		public byte[] Imagem { get; set; }
 		[DataType(DataType.Upload)]
 		[Display(Name = "Imagem")]
-		public HttpPostedFileBase imagemUpload { get; set; }
+		public HttpPostedFileBase ImagemUpload { get; set; }
        
     }
 }

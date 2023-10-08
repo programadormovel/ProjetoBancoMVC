@@ -50,5 +50,42 @@ namespace ProjetoBancoMVC.Repository
 				throw new Exception($"Erro ao selecionar o Funcionário: {e.Message}");
 			}
 		}
+
+		// Método: CREATE
+		public bool AdicionarFuncionario(FuncionarioModel func)
+		{
+			try
+			{
+				AbrirConexao();
+
+				Cmd = new SqlCommand("AdicionarNovoFuncionario", conn);
+				Cmd.CommandType = CommandType.StoredProcedure;
+				Cmd.Parameters.AddWithValue("@Nome", func.Nome);
+				Cmd.Parameters.AddWithValue("@Sobrenome", func.Sobrenome);
+				Cmd.Parameters.AddWithValue("@Cidade", func.Cidade);
+				Cmd.Parameters.AddWithValue("@Endereco", func.Endereco);
+				Cmd.Parameters.AddWithValue("@Email", func.Email);
+				Cmd.Parameters.AddWithValue("@Imagem", func.Imagem);
+				
+				int i = Cmd.ExecuteNonQuery();
+                if (i>=1)		
+                {
+                    return true;
+                }
+				else
+				{
+					return false;	
+				}
+            }
+			catch (Exception e)
+			{
+				throw new Exception($"Erro ao adicionar novo funcionário: {e.Message}");
+			}
+			finally
+			{
+				FecharConexao();
+			}
+
+		}
 	}
 }
