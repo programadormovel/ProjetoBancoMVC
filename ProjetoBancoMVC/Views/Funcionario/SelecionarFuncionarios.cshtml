@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ProjetoBancoMVC.Models.FuncionarioModel>
+@{
+    ViewBag.Title = "SelecionarFuncionarios";
+}
+
+<h2>SelecionarFuncionarios</h2>
+
+
+<p>
+    @Html.ActionLink("Adicionar Novo Funcionário", "AdicionarFuncionario")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sobrenome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagem)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.IdFuncionario)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            @if (item.Imagem != null)
+            {
+                <td>
+                    @{
+                        var base64 = Convert.ToBase64String(item.Imagem);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+                </td>
+            }
+            <td>
+                @Html.ActionLink("Atualizar", "AtualizarFuncionario", new { id = item.IdFuncionario })
+            </td>
+            <td>
+                @Html.ActionLink("Excluir", "ExcluirFuncionario", new { id = item.IdFuncionario }, new { onclick = "return confirm('Você tem certeza que deseja excluir funcionário?');" })
+            </td>
+        </tr>
+    }
+</table>
